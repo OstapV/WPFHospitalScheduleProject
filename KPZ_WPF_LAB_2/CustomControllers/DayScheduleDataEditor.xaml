@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="KPZ_WPF_LAB_2.CustomControllers.DayScheduleDataEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convertors="clr-namespace:KPZ_WPF_LAB_2.Convertors"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="170"
+             x:Name="root">
+    <UserControl.Resources>
+        <convertors:TimeConverter x:Key="timeConvertor"/>
+    </UserControl.Resources>
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1"
+            Text="Interval:" Margin="10,10,0,0" Foreground="#8A16C1"></TextBlock>
+        <ComboBox   Grid.Row="1" Grid.Column="2"
+                    Width="40" Height="20"  
+                    SelectedItem="{Binding Path=Item.Interval, ElementName=root, 
+            Converter={StaticResource timeConvertor}, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem Content="01:00" IsSelected="True"/>
+            <ComboBoxItem Content="02:00"/>
+            <ComboBoxItem Content="04:00"/>
+            <ComboBoxItem Content="06:00"/>
+            <ComboBoxItem Content="08:00"/>
+        </ComboBox>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Workday starts:" Margin="10,10,0,0" Foreground="#8A16C1"></TextBlock>
+        <ComboBox   Grid.Row="2" Grid.Column="2" 
+                    Width="40" Height="20" x:Name="cbxStart"
+                    SelectedValue="{Binding Path=Item.StartWorkDay, ElementName=root, Converter={StaticResource timeConvertor}, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem Content="00:00"/>
+            <ComboBoxItem Content="01:00"/>
+            <ComboBoxItem Content="02:00"/>
+            <ComboBoxItem Content="03:00"/>
+            <ComboBoxItem Content="04:00"/>
+            <ComboBoxItem Content="05:00"/>
+            <ComboBoxItem Content="06:00"/>
+            <ComboBoxItem Content="07:00"/>
+            <ComboBoxItem Content="08:00"/>
+            <ComboBoxItem Content="09:00" IsSelected="True"/>
+            <ComboBoxItem Content="10:00"/>
+            <ComboBoxItem Content="11:00"/>
+            <ComboBoxItem Content="12:00"/>
+            <ComboBoxItem Content="13:00"/>
+            <ComboBoxItem Content="14:00"/>
+            <ComboBoxItem Content="15:00"/>
+            <ComboBoxItem Content="16:00"/>
+            <ComboBoxItem Content="17:00"/>
+            <ComboBoxItem Content="18:00"/>
+            <ComboBoxItem Content="19:00"/>
+            <ComboBoxItem Content="20:00"/>
+            <ComboBoxItem Content="21:00"/>
+            <ComboBoxItem Content="22:00"/>
+            <ComboBoxItem Content="23:00"/>
+        </ComboBox>
+        <TextBlock  Grid.Row="3" Grid.Column="1" Text="Workday ends:" Margin="10,10,0,0" Foreground="#8A16C1"></TextBlock>
+        <ComboBox   Grid.Row="3" Grid.Column="2" 
+                    Width="40" Height="20"  x:Name="cbxEnd"
+                    SelectedValue="{Binding Path=Item.EndWorkDay, ElementName=root, Converter={StaticResource timeConvertor}, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem Content="00:00"/>
+            <ComboBoxItem Content="01:00"/>
+            <ComboBoxItem Content="02:00"/>
+            <ComboBoxItem Content="03:00"/>
+            <ComboBoxItem Content="04:00"/>
+            <ComboBoxItem Content="05:00"/>
+            <ComboBoxItem Content="06:00"/>
+            <ComboBoxItem Content="07:00"/>
+            <ComboBoxItem Content="08:00"/>
+            <ComboBoxItem Content="09:00"/>
+            <ComboBoxItem Content="10:00"/>
+            <ComboBoxItem Content="11:00"/>
+            <ComboBoxItem Content="12:00"/>
+            <ComboBoxItem Content="13:00"/>
+            <ComboBoxItem Content="14:00"/>
+            <ComboBoxItem Content="15:00"/>
+            <ComboBoxItem Content="16:00"/>
+            <ComboBoxItem Content="17:00"/>
+            <ComboBoxItem Content="18:00"/>
+            <ComboBoxItem Content="19:00"/>
+            <ComboBoxItem Content="20:00"/>
+            <ComboBoxItem Content="21:00"/>
+            <ComboBoxItem Content="22:00" IsSelected="True"/>
+            <ComboBoxItem Content="23:00"/>
+        </ComboBox>
+        <Button x:Name="cbxButton" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="90" Height="20" Margin="15"
+                Command="{Binding CreateCommand, ElementName=root}"
+                CommandParameter="{Binding}">Set</Button>
+    </Grid>
+</UserControl>
